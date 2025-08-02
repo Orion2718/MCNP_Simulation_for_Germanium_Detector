@@ -1,0 +1,41 @@
+ c Cell definition                                                               
+    1     1   -8.96 -1 imp:p=1 $ Copper rod
+    2     2   -5.32 -2 #1 imp:p=1 $ Active zone
+    3     2   -5.32 2 -3 #1 imp:p=1 $ Dead zone
+    4     0         -4 3 #1 imp:p=1 $ Space between Germanium and Casing
+    5     3   -0.92 4 -5 #1 imp:p=1 $ Plastic casing
+    6     4    -1.347 -6 imp:p=1 $ KCl+Water inside Bottle
+    7     3   -0.92 6 -7 imp:p=1 $ Plastic Casing
+   98     5 -0.00125 -99 7 5 #1 imp:p=1 $ Air
+   99     0         99 imp:p=0 $ void
+
+c Geometry definition                                                           
+    1       rcc 0 -7.6 0 0 5 0 0.4 
+    2       rcc 0 -6.495 0 0 5.995 0 2.955 
+    3       rcc 0 -6.595 0 0 6.1 0 3.05 
+    4       rcc 0 -7 0 0 6.9 0 3.15 
+    5       rcc 0 -7.1 0 0 7.1 0 3.25 
+    6       rcc 0 0.06 0 0 11.9 0 3.55 
+    7       rcc 0 0.01 0 0 12 0 3.6 
+   99       rcc 0 -10 0 0 30 0 5 
+
+mode  p
+m1    29000.            -8.96  $ Copper
+m2    32000.            -5.32  $ Germanium
+m3    6000.             -0.86  $ Plastic
+      1000.             -0.14 
+m4    1000.           -0.6313  $ Saturated Water with KCl
+      8000.           -0.3157  $ O2
+      17000.          -0.0265  $ Cl
+      19000.          -0.0265  $ K
+m5    8000.              -0.2  $ Air
+      7000.              -0.8 
+c Source definition                                                             
+sdef ERG=d1 PAR=2 CEL 6 POS=0 0 0 RAD=d2 AXS= 0 1 0 EXT=d3      
+si1 L 1.461                                                                     
+sp1 0.1072                           $ describes the probability per decay      
+si2 0 3.55                             $ radial distibution of Source           
+si3 0 11.9                               $ axial distribution of the Source      
+f8:p 2                             $ Energy deposition over Surface 2           
+e8 0 0.0001 0.001 4096i 2.500      $ 1keV to 2,5MeV, ignores value below 0,1keV 
+nps 999999 $ Number particles generated                             
