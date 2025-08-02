@@ -1,0 +1,32 @@
+Sample Problem Input Deck
+c Cell definition                                                               
+    1     1   -8.96 -1 imp:p=1 $ Copper rod
+    2     2   -5.32 -2 #1 imp:p=1 $ Active zone with germanium
+    3     2   -5.32 2 -3 #1 imp:p=1 $ Dead zone
+    4     0         -4 3 #1 imp:p=1 $ Space between Germanium and Casing
+    5     3   -0.92 4 -5 #1 imp:p=1 $ Plastic casing layer
+    6     4 -0.00125 5 -99 #1 imp:p=1 $ Air
+    7     0         99 imp:p=0 $ Void
+
+c Geometry definition                                                           
+    1       rcc 0 -7.6 0 0 5 0 0.4 
+    2       rcc 0 -6.495 0 0 5.995 0 2.955 
+    3       rcc 0 -6.595 0 0 6.1 0 3.05 
+    4       rcc 0 -7 0 0 6.9 0 3.15 
+    5       rcc 0 -7.1 0 0 7.1 0 3.25 
+   99       rcc 0 -10 0 0 30 0 5 
+
+mode  p
+m1    29000.            -8.96  $ Copper
+m2    32000.            -5.32  $ Germanium
+m3    6000.             -0.86  $ Plastic
+      1000.             -0.14 
+m4    8000.              -0.2  $ Air
+      7000.              -0.8 
+c Source definition                                                             
+sdef ERG=d1 POS=0 10 0             $ Source Parameters    
+si1 L 1.173 1.3325                 $ defines Energyvalues d1, L for 2 discret Energies
+sp1 1 1                            $ Probability per decay
+f8:p 2                             $ Energy deposition over Surface 2           
+e8 0 0.0001 0.001 4096i 2.500      $ 1keV to 2,5MeV, ignores value below 0,1keV  
+nps 100000000                      $ Total number of particles generated        
